@@ -19,10 +19,10 @@ class UserRepository
                     ->one();
     }
 
-    public function create($email) {
+    public function create($email, $name=null) {
 
         return $this->db->from('users')
-                    ->insert(array('email' =>  $this->db->escape($email)))
+                    ->insert(array('email' =>  $this->db->escape($email), 'name' => $name))
                     ->execute();
     }
 
