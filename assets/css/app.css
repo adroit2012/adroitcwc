@@ -135,3 +135,10 @@ div.meta {
 .post-comment h4 {
     margin-left: 20px;
 }
+
+label.error{
+  color: red;
+  font-size: 0.9em;
+  font-style: italic;
+  font-weight: normal;
+}

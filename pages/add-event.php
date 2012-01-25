@@ -29,26 +29,27 @@ $categories = App::getRepository('Category')->getAllCategories();
 
             <div class="post-comment">
 
-                <form action="<?php ViewHelper::url('?page=add-event') ?>" class="form-stacked" method="post">
+                <form id="add-event" action="<?php ViewHelper::url('?page=add-event') ?>" class="form-stacked" method="post">
 
                     <div class="clearfix">
-                        <label for="xlInput3">Event Title:</label>
+                        <label for="xlInput3">Event Title:*</label>
                         <div class="input">
                             <input class="xxlarge" id="title" name="title" size="30" type="text">
                         </div>
                     </div>
 
                     <div class="clearfix">
-                        <label for="xlInput3">Event Description:</label>
+                        <label for="xlInput3">Event Description:*</label>
                         <div class="input">
                             <textarea class="xxlarge" id="summary" name="summary" rows="7" cols="50"></textarea>
                         </div>
                     </div>
 
                     <div class="clearfix">
-                        <label for="xlInput3">Category:</label>
+                        <label for="xlInput3">Category:*</label>
                         <div class="input">
                             <select name="category_id">
+                                <option value="">Select ...</option>
                                 <?php foreach ($categories as $category): ?>
                                 <option value="<?php echo $category['category_id'] ?>"><?php echo $category['title'] ?></option>
                                 <?php endforeach; ?>
@@ -71,10 +72,17 @@ $categories = App::getRepository('Category')->getAllCategories();
                     </div>
 
                     <div class="clearfix">
-                        <label for="xlInput3">Date:</label>
-                        <div class="inline-inputs">
-                            <input class="small" id="start_date" name="start_date" type="text"> to
-                            <input class="small" id="end_date" name="end_date" type="text">
+                        <label for="xlInput3">From:*</label>
+                        <div class="input">
+                            <input class="small" id="start_date" name="start_date" size="30" type="text">
+                            <span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <label for="xlInput3">To:*</label>
+                        <div class="input">
+                            <input class="small" id="end_date" name="end_date" size="30" type="text">
                             <span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
                         </div>
                     </div>
@@ -90,6 +98,28 @@ $categories = App::getRepository('Category')->getAllCategories();
                     <input type="submit" class="btn primary" value="Submit" />
 
                 </form>
+                <script type="text/javascript">
+                  $(document).ready(function(){
+                      $("form#add-event").validate({
+                        rules: {
+                          title: "required",
+                          summary: "required",
+                          category_id: "required",
+                          href: {
+                            url: true
+                          },
+                          start_date: {
+                            required: true,
+                            date: true
+                          },
+                          end_date: {
+                            required: true,
+                            date: true
+                          }
+                        }
+                      });
+                    });
+                </script>
 
             </div>
 
