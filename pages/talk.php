@@ -35,7 +35,7 @@ $categories = App::getRepository('Category')->getAllCategories();
             </div>
 
             <div class="post-comment">
-
+              <?php if(isset ($_SESSION['user'])){ ?>
                 <h4>Write a comment:</h4>
                 <form action="<?php ViewHelper::url('?page=comment') ?>" class="form-stacked" method="post">
 
@@ -46,7 +46,9 @@ $categories = App::getRepository('Category')->getAllCategories();
                     <input type="submit" class="btn primary" value="Submit" />
 
                 </form>
-
+                <?php } else{ ?>
+                  Please sign in with <a href="<?php ViewHelper::url('?page=login&type=yahoo') ?>">Yahoo</a> or <a href="<?php ViewHelper::url('?page=login&type=google') ?>">Google</a> to make a comment.
+                <?php } ?>
             </div>
 
         </div>

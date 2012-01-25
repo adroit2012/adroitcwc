@@ -38,7 +38,7 @@ $categories = App::getRepository('Category')->getAllCategories();
             </div>
 
             <p class="align-justify"><?php echo nl2br($event['summary']) ?></p>
-            <p><strong>Event Link:</strong> <br /><a href="<?php echo $event['href'] ?>"><?php echo $event['href'] ?></a></p>
+            <p><strong>Event Link:</strong> <br /><a target="_blank" href="<?php echo $event['href'] ?>"><?php echo $event['href'] ?></a></p>
 
             <h3>Talks</h3>
             <ul>
