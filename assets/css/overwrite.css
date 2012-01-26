@@ -1,0 +1,31 @@
+/* 
+    Document   : overwrite
+    Created on : Jan 27, 2012, 2:20:55 AM
+    Author     : codextips
+    Description:
+        Purpose of the stylesheet follows.
+        Overwrite the css
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.form-stacked label {
+    display: inline;
+}
+
+label.error{
+    display: inline;
+    color: red;
+    font-size: 0.9em;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.pull-right .sign-in-with {
+    float: left;
+    width: 80px;
+    color: gray;
+}
