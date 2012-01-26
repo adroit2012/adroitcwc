@@ -8,12 +8,15 @@ if (!empty($_POST)) {
 
     $_SESSION['flash']['type']    = 'success';
     $_SESSION['flash']['message'] = 'Successfully added event!.';
-
     header('Location: ' . ViewHelper::url('?page=event&id=' . $eventId, true));
     exit;
 }
 
 $categories = App::getRepository('Category')->getAllCategories();
+$categories_for_tokenizer = array();
+foreach ($categories as $category) {
+    $categories_for_tokenizer[] = array('id' => $category['category_id'], 'name' => $category['title']);
+}
 
 ?>
 
@@ -33,6 +36,7 @@ $categories = App::getRepository('Category')->getAllCategories();
 
 						<div class="clearfix">
 							<label for="xlInput3">Event Title:*</label>
+                            <label for="title" generated="false" class="error"></label>
 							<div class="input">
 								<input class="xxlarge" id="title" name="title" size="30" type="text">
 							</div>
@@ -40,6 +44,7 @@ $categories = App::getRepository('Category')->getAllCategories();
 
 						<div class="clearfix">
 							<label for="xlInput3">Event Description:*</label>
+                            <label for="summary" generated="false" class="error"></label>
 							<div class="input">
 								<textarea class="xxlarge" id="summary" name="summary" rows="7" cols="50"></textarea>
 							</div>
@@ -47,13 +52,9 @@ $categories = App::getRepository('Category')->getAllCategories();
 
 						<div class="clearfix">
 							<label for="xlInput3">Category:*</label>
+                            <label for="category_id" generated="false" class="error"></label>
 							<div class="input">
-								<select name="category_id">
-									<option value="">Select ...</option>
-									<?php foreach ($categories as $category): ?>
-									<option value="<?php echo $category['category_id'] ?>"><?php echo $category['title'] ?></option>
-									<?php endforeach; ?>
-								</select>
+                                <input class="xxlarge" id="category_id" name="category_id" size="30" type="text">
 							</div>
 						</div>
 
@@ -66,6 +67,7 @@ $categories = App::getRepository('Category')->getAllCategories();
 
 						<div class="clearfix">
 							<label for="xlInput3">URL:</label>
+                            <label for="href" generated="false" class="error"></label>
 							<div class="input">
 								<input class="xlarge" id="href" name="href" size="30" type="text">
 							</div>
@@ -73,6 +75,7 @@ $categories = App::getRepository('Category')->getAllCategories();
 
 						<div class="clearfix">
 							<label for="xlInput3">From:*</label>
+                            <label for="start_date" generated="false" class="error"></label>
 							<div class="input">
 								<input class="small" id="start_date" name="start_date" size="30" type="text">
 								<span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
@@ -81,9 +84,11 @@ $categories = App::getRepository('Category')->getAllCategories();
 
 						<div class="clearfix">
 							<label for="xlInput3">To:*</label>
+                            <label for="end_date" generated="false" class="error"></label>
 							<div class="input">
 								<input class="small" id="end_date" name="end_date" size="30" type="text">
 								<span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
+                                
 							</div>
 						</div>
 
@@ -99,44 +104,52 @@ $categories = App::getRepository('Category')->getAllCategories();
 
 					</form>
 					<script type="text/javascript">
-					  $(document).ready(function(){
-						  $("form#add-event").validate({
-							rules: {
-							  title: "required",
-							  summary: "required",
-							  category_id: "required",
-							  href: {
-								url: true
-							  },
-							  start_date: {
-								required: true,
-								date: true
-							  },
-							  end_date: {
-								required: true,
-								date: true
-							  }
-							}
-						  });
+                      $(document).ready(function(){
+                          $("form#add-event").validate({
+                            rules: {
+                              title: "required",
+                              summary: "required",
+                              category_id: {
+                                required: true
+                              },
+                              href: {
+                                url: true
+                              },
+                              start_date: {
+                                required: true,
+                                date: true
+                              },
+                              end_date: {
+                                required: true,
+                                date: true
+                              }
+                            },
+                            ignore: ""
+                          });
 
-						  $( "#start_date" ).datepicker({
-							changeMonth: true,
-							changeYear: true,
-							showOn: "both",
-							buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
-						  });
-						  $( "#end_date" ).datepicker({
-							changeMonth: true,
-							changeYear: true,
-							showOn: "both",
-							buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
-						  });
-						});
-					</script>
+                          $( "#start_date" ).datepicker({
+                            changeMonth: true,
+                            changeYear: true,
+                            showOn: "both",
+                            buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
+                          });
+                          $( "#end_date" ).datepicker({
+                            changeMonth: true,
+                            changeYear: true,
+                            showOn: "both",
+                            buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
+                          });
+                        });
+                        $("input#category_id").tokenInput(<?php echo json_encode($categories_for_tokenizer); ?>, {
+                            theme: "facebook",
+                            preventDuplicates: true,
+                            propertyToSearch: 'name',
+                            hintText: "Type category name here, from result select one/multiple",
+                            animateDropdown: true});
+                    </script>
 				<?php } else{ ?>
-                  Please sign in with <a href="<?php ViewHelper::url('?page=login&type=yahoo') ?>">Yahoo</a> or <a href="<?php ViewHelper::url('?page=login&type=google') ?>">Google</a> to create a new event.
+                    <p>Please sign in with <a href="<?php ViewHelper::url('?page=login&type=yahoo') ?>">Yahoo</a> or <a href="<?php ViewHelper::url('?page=login&type=google') ?>">Google</a> to create a new event.</p>
                 <?php } ?>
-
             </div>
 
         </div>

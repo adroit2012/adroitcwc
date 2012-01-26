@@ -13,10 +13,14 @@
     <!-- Le styles -->
     <link href="<?php echo ViewHelper::url("assets/css/bootstrap.css") ?>" rel="stylesheet">
     <link href="<?php echo ViewHelper::url("assets/css/app.css") ?>" rel="stylesheet">
+    <link href="<?php echo ViewHelper::url("assets/css/overwrite.css") ?>" rel="stylesheet">
+    <link href="<?php echo ViewHelper::url("assets/css/token-input.css") ?>" rel="stylesheet">
+    <link href="<?php echo ViewHelper::url("assets/css/token-input-facebook.css") ?>" rel="stylesheet">
     <link href="<?php echo ViewHelper::url("assets/jquery-ui/jquery-ui.min.css") ?>" rel="stylesheet">
     <script src="<?php echo ViewHelper::url("assets/js/jquery-1.7.1.min.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/js/jquery.validate.min.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/jquery-ui/jquery-ui.min.js") ?>" type="text/javascript"></script>
+    <script src="<?php echo ViewHelper::url("assets/js/jquery.tokeninput.js") ?>" type="text/javascript"></script>
 </head>
 
 <body>

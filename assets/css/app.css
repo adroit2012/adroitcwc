@@ -136,16 +136,3 @@ div.meta {
 .post-comment h4 {
     margin-left: 20px;
 }
-
-label.error{
-  color: red;
-  font-size: 0.9em;
-  font-style: italic;
-  font-weight: normal;
-}
-
-.pull-right .sign-in-with {
-    float: left;
-    width: 80px;
-    color: gray;
-}
