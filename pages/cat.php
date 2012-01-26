@@ -16,6 +16,7 @@ $categories = App::getRepository('Category')->getAllCategories();
 
             <h4>Events on <?php echo $category['title'] ?></h4>
 
+			<?php if(isset($activeEvents) && !empty ($activeEvents)) { ?>
             <div class="events">
 
                 <?php foreach ($activeEvents as $event): ?>
@@ -45,6 +46,11 @@ $categories = App::getRepository('Category')->getAllCategories();
                 <?php endforeach; ?>
 
             </div>
+			<?php } else { ?>
+			<div class="post-comment" style="padding: 16px 0 16px 10px;">
+				Sorry, no active events found.
+			</div>
+			<?php } ?>
 
         </div>
 
