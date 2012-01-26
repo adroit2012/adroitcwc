@@ -13,8 +13,10 @@
     <!-- Le styles -->
     <link href="<?php echo ViewHelper::url("assets/css/bootstrap.css") ?>" rel="stylesheet">
     <link href="<?php echo ViewHelper::url("assets/css/app.css") ?>" rel="stylesheet">
+    <link href="<?php echo ViewHelper::url("assets/css/jquery-ui.min.css") ?>" rel="stylesheet">
     <script src="<?php echo ViewHelper::url("assets/js/jquery-1.7.1.min.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/js/jquery.validate.min.js") ?>" type="text/javascript"></script>
+    <script src="<?php echo ViewHelper::url("assets/js/jquery-ui.min.js") ?>" type="text/javascript"></script>
 </head>
 
 <body>

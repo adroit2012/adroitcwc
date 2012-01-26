@@ -118,6 +118,17 @@ $categories = App::getRepository('Category')->getAllCategories();
                           }
                         }
                       });
+
+                      $( "#start_date" ).datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        showAnim: 'slide'
+                      });
+                      $( "#end_date" ).datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        showAnim: 'slide'
+                      });
                     });
                 </script>
 
