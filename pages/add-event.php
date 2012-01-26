@@ -122,12 +122,14 @@ $categories = App::getRepository('Category')->getAllCategories();
                       $( "#start_date" ).datepicker({
                         changeMonth: true,
                         changeYear: true,
-                        showAnim: 'slide'
+                        showOn: "both",
+                        buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
                       });
                       $( "#end_date" ).datepicker({
                         changeMonth: true,
                         changeYear: true,
-                        showAnim: 'slide'
+                        showOn: "both",
+                        buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
                       });
                     });
                 </script>
