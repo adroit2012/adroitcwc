@@ -39,11 +39,12 @@
                 <?php if ($_SESSION['user']): ?>
                     <span><?php echo $_SESSION['user']['email'] ?></span> | <a href="<?php ViewHelper::url('?page=logout') ?>">Logout</a>
                 <?php else: ?>
+                    <div class="sign-in-with">Sign in with :</div>
                     <a href="<?php ViewHelper::url('?page=login&type=google') ?>">
-                        <img width="150px" height="26px" src="<?php ViewHelper::url('assets/images/google_signin.png') ?>" alt="Sign in with Google">
+                      <img width="24px" height="24px" src="<?php ViewHelper::url('assets/images/google_signin.png') ?>" alt="Sign in with Google">
                     </a>
                     <a href="<?php ViewHelper::url('?page=login&type=yahoo') ?>">
-                        <img width="150px" height="26px" src="<?php ViewHelper::url('assets/images/yahoo_signin.png') ?>" alt="Sign in with Yahoo!">
+                      <img width="24px" height="24px" src="<?php ViewHelper::url('assets/images/yahoo_signin.png') ?>" alt="Sign in with Yahoo!">
                     </a>
                 <?php endif; ?>
             </span>

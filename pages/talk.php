@@ -37,15 +37,24 @@ $categories = App::getRepository('Category')->getAllCategories();
             <div class="post-comment">
               <?php if(isset ($_SESSION['user'])){ ?>
                 <h4>Write a comment:</h4>
-                <form action="<?php ViewHelper::url('?page=comment') ?>" class="form-stacked" method="post">
+                <form id="add-comment" action="<?php ViewHelper::url('?page=comment') ?>" class="form-stacked" method="post">
 
-                    <textarea class="xxlarge" id="comment" name="body" rows="7" cols="50"></textarea>
+                    <textarea class="xxlarge" id="body" name="body" rows="7" cols="50"></textarea>
                     <span class="help-block">Please be polite in your comment as this is a social site.</span> <br />
 
                     <input type="hidden" value="<?php echo $talk['talk_id'] ?>" name="talk_id" />
                     <input type="submit" class="btn primary" value="Submit" />
 
                 </form>
+                <script type="text/javascript">
+                  $(document).ready(function(){
+                      $("form#add-comment").validate({
+                        rules: {
+                          body: "required"
+                        }
+                      });
+                    });
+                </script>
                 <?php } else{ ?>
                   Please sign in with <a href="<?php ViewHelper::url('?page=login&type=yahoo') ?>">Yahoo</a> or <a href="<?php ViewHelper::url('?page=login&type=google') ?>">Google</a> to make a comment.
                 <?php } ?>
