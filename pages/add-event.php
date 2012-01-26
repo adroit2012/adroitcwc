@@ -28,111 +28,114 @@ $categories = App::getRepository('Category')->getAllCategories();
             <p class="align-justify">Submit your event here to be included on Tech Adda. The site is aimed at events with sessions, where organisers are looking to use this as a tool to gather feedback.</p>
 
             <div class="post-comment">
+				<?php if(isset ($_SESSION['user'])){ ?>
+					<form id="add-event" action="<?php ViewHelper::url('?page=add-event') ?>" class="form-stacked" method="post">
 
-                <form id="add-event" action="<?php ViewHelper::url('?page=add-event') ?>" class="form-stacked" method="post">
+						<div class="clearfix">
+							<label for="xlInput3">Event Title:*</label>
+							<div class="input">
+								<input class="xxlarge" id="title" name="title" size="30" type="text">
+							</div>
+						</div>
 
-                    <div class="clearfix">
-                        <label for="xlInput3">Event Title:*</label>
-                        <div class="input">
-                            <input class="xxlarge" id="title" name="title" size="30" type="text">
-                        </div>
-                    </div>
+						<div class="clearfix">
+							<label for="xlInput3">Event Description:*</label>
+							<div class="input">
+								<textarea class="xxlarge" id="summary" name="summary" rows="7" cols="50"></textarea>
+							</div>
+						</div>
 
-                    <div class="clearfix">
-                        <label for="xlInput3">Event Description:*</label>
-                        <div class="input">
-                            <textarea class="xxlarge" id="summary" name="summary" rows="7" cols="50"></textarea>
-                        </div>
-                    </div>
+						<div class="clearfix">
+							<label for="xlInput3">Category:*</label>
+							<div class="input">
+								<select name="category_id">
+									<option value="">Select ...</option>
+									<?php foreach ($categories as $category): ?>
+									<option value="<?php echo $category['category_id'] ?>"><?php echo $category['title'] ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
 
-                    <div class="clearfix">
-                        <label for="xlInput3">Category:*</label>
-                        <div class="input">
-                            <select name="category_id">
-                                <option value="">Select ...</option>
-                                <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category['category_id'] ?>"><?php echo $category['title'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
+						<div class="clearfix">
+							<label for="xlInput3">Venue:</label>
+							<div class="input">
+								<input class="xlarge" id="location" name="location" size="30" type="text">
+							</div>
+						</div>
 
-                    <div class="clearfix">
-                        <label for="xlInput3">Venue:</label>
-                        <div class="input">
-                            <input class="xlarge" id="location" name="location" size="30" type="text">
-                        </div>
-                    </div>
+						<div class="clearfix">
+							<label for="xlInput3">URL:</label>
+							<div class="input">
+								<input class="xlarge" id="href" name="href" size="30" type="text">
+							</div>
+						</div>
 
-                    <div class="clearfix">
-                        <label for="xlInput3">URL:</label>
-                        <div class="input">
-                            <input class="xlarge" id="href" name="href" size="30" type="text">
-                        </div>
-                    </div>
+						<div class="clearfix">
+							<label for="xlInput3">From:*</label>
+							<div class="input">
+								<input class="small" id="start_date" name="start_date" size="30" type="text">
+								<span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
+							</div>
+						</div>
 
-                    <div class="clearfix">
-                        <label for="xlInput3">From:*</label>
-                        <div class="input">
-                            <input class="small" id="start_date" name="start_date" size="30" type="text">
-                            <span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
-                        </div>
-                    </div>
+						<div class="clearfix">
+							<label for="xlInput3">To:*</label>
+							<div class="input">
+								<input class="small" id="end_date" name="end_date" size="30" type="text">
+								<span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
+							</div>
+						</div>
 
-                    <div class="clearfix">
-                        <label for="xlInput3">To:*</label>
-                        <div class="input">
-                            <input class="small" id="end_date" name="end_date" size="30" type="text">
-                            <span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
-                        </div>
-                    </div>
+						<div class="clearfix">
+							<label for="xlInput3">Logo:</label>
+							<div class="input">
+								<input class="xlarge" id="logo" name="logo" size="30" type="text">
+								<span class="help-block">The logo should be of dimension 90x90.</span>
+							</div>
+						</div>
 
-                    <div class="clearfix">
-                        <label for="xlInput3">Logo:</label>
-                        <div class="input">
-                            <input class="xlarge" id="logo" name="logo" size="30" type="text">
-                            <span class="help-block">The logo should be of dimension 90x90.</span>
-                        </div>
-                    </div>
+						<input type="submit" class="btn primary" value="Submit" />
 
-                    <input type="submit" class="btn primary" value="Submit" />
+					</form>
+					<script type="text/javascript">
+					  $(document).ready(function(){
+						  $("form#add-event").validate({
+							rules: {
+							  title: "required",
+							  summary: "required",
+							  category_id: "required",
+							  href: {
+								url: true
+							  },
+							  start_date: {
+								required: true,
+								date: true
+							  },
+							  end_date: {
+								required: true,
+								date: true
+							  }
+							}
+						  });
 
-                </form>
-                <script type="text/javascript">
-                  $(document).ready(function(){
-                      $("form#add-event").validate({
-                        rules: {
-                          title: "required",
-                          summary: "required",
-                          category_id: "required",
-                          href: {
-                            url: true
-                          },
-                          start_date: {
-                            required: true,
-                            date: true
-                          },
-                          end_date: {
-                            required: true,
-                            date: true
-                          }
-                        }
-                      });
-
-                      $( "#start_date" ).datepicker({
-                        changeMonth: true,
-                        changeYear: true,
-                        showOn: "both",
-                        buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
-                      });
-                      $( "#end_date" ).datepicker({
-                        changeMonth: true,
-                        changeYear: true,
-                        showOn: "both",
-                        buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
-                      });
-                    });
-                </script>
+						  $( "#start_date" ).datepicker({
+							changeMonth: true,
+							changeYear: true,
+							showOn: "both",
+							buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
+						  });
+						  $( "#end_date" ).datepicker({
+							changeMonth: true,
+							changeYear: true,
+							showOn: "both",
+							buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
+						  });
+						});
+					</script>
+				<?php } else{ ?>
+                  Please sign in with <a href="<?php ViewHelper::url('?page=login&type=yahoo') ?>">Yahoo</a> or <a href="<?php ViewHelper::url('?page=login&type=google') ?>">Google</a> to create a new event.
+                <?php } ?>
 
             </div>
 

@@ -53,7 +53,8 @@ try {
             $_SESSION['flash']['type']    = 'error';
         }
 
-        header('Location: ' . $_SERVER['HTTP_REFERER'] . $_SERVER['QUERY_STRING']);
+		//return to previous url
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
 
     }
 
