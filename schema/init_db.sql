@@ -1,7 +1,22 @@
+-- phpMyAdmin SQL Dump
+-- version 3.3.2deb1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jan 27, 2012 at 03:05 AM
+-- Server version: 5.1.41
+-- PHP Version: 5.3.2-1ubuntu4.10
+
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
 --
--- Database: `tech_adda`
+-- Database: `cwc2012`
 --
 
 -- --------------------------------------------------------
@@ -26,7 +41,18 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories_events`
+--
+
+CREATE TABLE IF NOT EXISTS `categories_events` (
+  `category_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -43,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `is_private` tinyint(1) DEFAULT '0',
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -57,7 +83,6 @@ CREATE TABLE IF NOT EXISTS `events` (
   `title` varchar(200) CHARACTER SET latin1 DEFAULT NULL,
   `summary` text CHARACTER SET latin1,
   `logo` varchar(200) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
   `location` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `href` varchar(200) CHARACTER SET latin1 DEFAULT NULL,
   `start_date` date DEFAULT NULL,
@@ -66,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `total_attending` int(11) DEFAULT '0',
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`event_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -83,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `talks` (
   `slide_link` varchar(200) DEFAULT NULL,
   `total_comments` int(11) DEFAULT '0',
   PRIMARY KEY (`talk_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -97,4 +122,4 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(25) DEFAULT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
