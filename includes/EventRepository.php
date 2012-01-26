@@ -12,8 +12,17 @@ class EventRepository
         $this->db = $db;
     }
 
-    public function getActiveEvents()
+    public function getActiveEvents($order = 'ASC')
     {
+        $this->db->from('events');
+		$this->db->where('is_active = ', 1);
+		$order ? $this->db->orderBy('event_id', $order) : "";
+		return $this->db->many();
+    }
+	
+	public function getEvents($criteria)
+    {
+		//if()
         return $this->db->from('events')
                     ->where('is_active = ', 1)
                     ->many();

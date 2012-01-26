@@ -2,7 +2,7 @@
 
 include_once 'header.php';
 
-$activeEvents = App::getRepository('Event')->getActiveEvents();
+$activeEvents = App::getRepository('Event')->getActiveEvents('DESC');
 $categories = App::getRepository('Category')->getAllCategories();
 
 ?>
@@ -42,7 +42,23 @@ $categories = App::getRepository('Category')->getAllCategories();
                 </div>
 
                 <?php endforeach; ?>
-
+				<?php
+//				$newEvent = new EventsModel();
+//				$eventModel = App::loadModel('events');
+//				/* @var $eventModel Sparrow */
+//				$newEvent->user_id = 1;
+//				$newEvent->category_id = 1;
+//				$newEvent->end_date = '12/12/2012';
+//				//$eventModel->create_date = '12/12/2012';
+//				$newEvent->href = 'http://www.google.com';
+//				$newEvent->is_active = 1;
+//				$newEvent->location = 'Dhaka';
+//				$newEvent->start_date = '12/12/2012';
+//				$newEvent->summary = 'hello world!!!!';
+//				$newEvent->title = 'hello again';
+//				$eventModel->save($newEvent);
+				
+				?>
             </div>
 
         </div>
