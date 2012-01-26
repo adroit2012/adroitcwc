@@ -53,6 +53,7 @@ body {
 
 .pull-right {
     margin-top: 8px;
+    width: auto;
 }
 
 .pull-right span {
@@ -141,4 +142,10 @@ label.error{
   font-size: 0.9em;
   font-style: italic;
   font-weight: normal;
+}
+
+.pull-right .sign-in-with {
+    float: left;
+    width: 80px;
+    color: gray;
 }
