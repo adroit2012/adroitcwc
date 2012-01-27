@@ -39,6 +39,9 @@
                 <li><a href="<?php ViewHelper::url('?page=about') ?>">About</a></li>
             </ul>
 
+			<form method="post" action="<?php ViewHelper::url('?page=search') ?>" class="pull-left">
+				<input type="text" placeholder="Search" name="search">
+			  </form>
             <span class="pull-right">
                 <?php if ($_SESSION['user']): ?>
                     <span><?php echo $_SESSION['user']['email'] ?></span> | <a href="<?php ViewHelper::url('?page=logout') ?>">Logout</a>

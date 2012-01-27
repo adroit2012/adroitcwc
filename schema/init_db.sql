@@ -90,8 +90,9 @@ CREATE TABLE IF NOT EXISTS `events` (
   `is_active` tinyint(1) DEFAULT '1',
   `total_attending` int(11) DEFAULT '0',
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`event_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+  PRIMARY KEY (`event_id`),
+  FULLTEXT KEY `search` (`title`,`summary`,`location`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 

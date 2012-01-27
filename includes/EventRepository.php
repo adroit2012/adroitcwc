@@ -80,4 +80,15 @@ class EventRepository
         }
         return $inserted_event_id;
     }
+	
+	public function search($searchString)
+	{
+		$this->db->reset();
+		return $this->db->sql(
+			"SELECT *, MATCH(title, summary, location) AGAINST('$searchString')".' AS score '."
+			FROM events WHERE 
+			MATCH(title, summary, location) AGAINST('$searchString') 
+			ORDER BY score DESC"
+		)->many();
+	}
 }
