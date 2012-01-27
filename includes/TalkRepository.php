@@ -36,4 +36,13 @@ class TalkRepository
 			ORDER BY score DESC"
 		)->many();
 	}
+	
+	public function create($data)
+    {
+        $this->db->from('talks')
+             ->insert($data)
+             ->execute();
+		
+		return $this->db->insert_id;
+	}
 }
