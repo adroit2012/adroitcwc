@@ -49,7 +49,6 @@ $categories = App::getRepository('Category')->getAllCategories();
                                     <?php }?>
                                 <?php }else{?>
                                     <strong><?php echo $event['total_attending'] ?> people</strong> attending so far! &nbsp;
-                                    <a id="i-am-attending" href="#" class="btn small">I'm attending</a>
                                 <?php }?>
                             </span>
                         </p>
