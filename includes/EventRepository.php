@@ -137,4 +137,13 @@ class EventRepository {
         return empty($attendee) ? false : true;
     }
 
+
+    public function getWhoIsAttending($event_id){
+        $this->db->reset();
+        $this->db->select('attendees.event_id, users.user_id, users.email, users.name');
+        $this->db->from('attendees');
+        $this->db->join('users', array('attendees.user_id' => 'users.user_id' ));
+        $this->db->where(array('event_id' => $event_id));
+        return $this->db->many();
+    }
 }

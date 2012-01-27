@@ -36,4 +36,30 @@ class TalkRepository
 			ORDER BY score DESC"
 		)->many();
 	}
+
+    public function rateTalk($talk_id, $rating){
+        $this->db->reset();
+        $talk = $this->getTalkById($talk_id);
+        $new_rate_count = (int)$talk['rate_count'] + 1;
+        $new_rating = ((double)($talk['rating'] * $talk['rate_count']) + (double)$rating) / $new_rate_count;
+        $new_rating = round($new_rating, 1);
+        $this->db->reset();
+        $this->db->from('talks')
+                 ->where(array('talk_id' => $talk_id))
+                 ->update(array('rating' => $new_rating, 'rate_count' => $new_rate_count))
+                 ->execute();
+        $talk['rate_count'] = $new_rate_count;
+        $talk['rating'] = $new_rating;
+        return $talk;
+        
+    }
+	
+	public function create($data)
+    {
+        $this->db->from('talks')
+             ->insert($data)
+             ->execute();
+		
+		return $this->db->insert_id;
+	}
 }

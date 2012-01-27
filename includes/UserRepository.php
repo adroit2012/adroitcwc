@@ -28,10 +28,16 @@ class UserRepository
     
     public function updateProfile($user_id, $name=null) {
 
-        return $this->db->from('users')
+        $this->db->from('users')
                     ->where(array('user_id' => $user_id))
                     ->update(array('name' =>  $name))
                     ->execute();
+        return $name;
+    }
+
+    public function getGravatar($email, $size = 32, $class='thumbnail'){
+        $email_hash = md5( strtolower( trim( $email) ) );
+        return "<img class='$class' src='http://www.gravatar.com/avatar/$email_hash?s=$size' />";
     }
 
 }

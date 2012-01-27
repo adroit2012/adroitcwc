@@ -25,7 +25,8 @@ foreach ($categories as $category) {
     <div class="row">
 
         <div id="main-content" class="span10">
-
+            <?php ViewHelper::flushMessage(); ?>
+            
             <h2>Submit an event!</h2>
 
             <p class="align-justify">Submit your event here to be included on Tech Adda. The site is aimed at events with sessions, where organisers are looking to use this as a tool to gather feedback.</p>
@@ -78,7 +79,7 @@ foreach ($categories as $category) {
                             <label for="start_date" generated="false" class="error"></label>
 							<div class="input">
 								<input class="small" id="start_date" name="start_date" size="30" type="text">
-								<span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
+								<span class="help-block">Please enter date in this format: yyyy-mm-dd.</span>
 							</div>
 						</div>
 
@@ -87,7 +88,7 @@ foreach ($categories as $category) {
                             <label for="end_date" generated="false" class="error"></label>
 							<div class="input">
 								<input class="small" id="end_date" name="end_date" size="30" type="text">
-								<span class="help-block">Please enter date in this format: mm/dd/yyyy.</span>
+								<span class="help-block">Please enter date in this format: yyyy-mm-dd.</span>
                                 
 							</div>
 						</div>
@@ -135,12 +136,14 @@ foreach ($categories as $category) {
                             changeMonth: true,
                             changeYear: true,
                             showOn: "both",
+							dateFormat: "yy-mm-dd",
                             buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
                           });
                           $( "#end_date" ).datepicker({
                             changeMonth: true,
                             changeYear: true,
                             showOn: "both",
+							dateFormat: "yy-mm-dd",
                             buttonImage: "<?php echo ViewHelper::url("assets/images/icons/calendar.gif") ?>"
                           });
                         });

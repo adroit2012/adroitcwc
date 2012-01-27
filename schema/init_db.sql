@@ -62,14 +62,16 @@ CREATE TABLE IF NOT EXISTS `categories_events` (
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) DEFAULT NULL,
   `talk_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `body` text,
   `rating` tinyint(1) DEFAULT NULL,
   `is_private` tinyint(1) DEFAULT '0',
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  PRIMARY KEY (`comment_id`),
+  KEY `event_id` (`event_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -108,8 +110,10 @@ CREATE TABLE IF NOT EXISTS `talks` (
   `speaker` varchar(50) NOT NULL DEFAULT '',
   `slide_link` varchar(200) DEFAULT NULL,
   `total_comments` int(11) DEFAULT '0',
-  PRIMARY KEY (`talk_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  PRIMARY KEY (`talk_id`),
+  FULLTEXT KEY `search` (`title`,`summary`,`speaker`),
+  FULLTEXT KEY `speaker` (`speaker`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
