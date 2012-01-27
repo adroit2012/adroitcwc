@@ -123,10 +123,6 @@ foreach ($categories as $category) {
                               end_date: {
                                 required: true,
                                 date: true
-                              },
-                              logo: {  
-                                  accept: "png|jpe?g|gif",
-                                  filesize: 1048576
                               }
                             },
                             ignore: ""

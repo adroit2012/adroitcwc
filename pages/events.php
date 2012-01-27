@@ -23,7 +23,7 @@ $categories = App::getRepository('Category')->getAllCategories();
 
                     <div class="span2">
                         <?php if (!empty($event['logo'])): ?>
-                            <img src="<?php echo "upload/". $event['logo'] ?>" />
+                            <img width="90px" height="90" src="<?php ViewHelper::url("upload/".$event['logo']); ?>" />
                         <?php else: ?>
                             <img src="http://placehold.it/90x90" />
                         <?php endif; ?>
