@@ -14,7 +14,8 @@ $categories = App::getRepository('Category')->getAllCategories();
     <div class="row">
 
         <div id="main-content" class="span10">
-
+            <?php ViewHelper::flushMessage(); ?>
+            
             <h2><?php echo $talk['title'] ?></h2>
             <div class="meta">
                 by <strong><?php echo $talk['speaker'] ?></strong> <br />

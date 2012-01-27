@@ -12,7 +12,8 @@ $categories = App::getRepository('Category')->getAllCategories();
     <div class="row">
 
         <div id="main-content" class="span10">
-
+            <?php ViewHelper::flushMessage(); ?>
+            
             <div class="alert-message block-message success">
                 <h4>Welcome to Tech Adda!</h4>
                 <p>This is the site where event attendees can leave feedback on a tech event and its sessions. Do you have an opinion? Then <a href="<?php ViewHelper::url('login') ?>">log in</a> and share it!</p>

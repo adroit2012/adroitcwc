@@ -13,6 +13,8 @@ $categories = App::getRepository('Category')->getAllCategories();
     <div class="row">
 
         <div id="main-content" class="span10">
+            <?php ViewHelper::flushMessage(); ?>
+            
             <h4>Search Result</h4>
 
 			<div class="events">
