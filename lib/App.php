@@ -100,4 +100,10 @@ class App
         $repository = ucfirst($entity) . 'Repository';
         return new $repository(self::$db);
     }
+	
+	public static function loadModel($entity)
+    {		
+        $modelName = ucfirst($entity) . 'Model';
+        return self::$db->using($modelName);
+    }
 }

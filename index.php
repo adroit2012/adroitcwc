@@ -8,6 +8,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
     realpath(APPPATH . '/lib'),
     realpath(APPPATH . '/lib/Sparrow'),
     realpath(APPPATH . '/includes'),
+	realpath(APPPATH . '/models'),
     get_include_path(),
 )));
 
