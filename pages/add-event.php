@@ -33,7 +33,7 @@ foreach ($categories as $category) {
 
             <div class="post-comment">
 				<?php if(isset ($_SESSION['user'])){ ?>
-					<form id="add-event" action="<?php ViewHelper::url('?page=add-event') ?>" class="form-stacked" method="post">
+					<form id="add-event" action="<?php ViewHelper::url('?page=add-event') ?>" class="form-stacked" method="post" enctype="multipart/form-data">
 
 						<div class="clearfix">
 							<label for="xlInput3">Event Title:*</label>
@@ -96,7 +96,7 @@ foreach ($categories as $category) {
 						<div class="clearfix">
 							<label for="xlInput3">Logo:</label>
 							<div class="input">
-								<input class="xlarge" id="logo" name="logo" size="30" type="text">
+								<input class="xlarge" id="logo" name="logo" size="30" type="file">
 								<span class="help-block">The logo should be of dimension 90x90.</span>
 							</div>
 						</div>

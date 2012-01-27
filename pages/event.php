@@ -26,7 +26,7 @@ $event_categories_text = "Category: " . implode(', ', $event_categories_text);
 
                 <div class="span2" style="padding: 10px 0 10px 10px;">
                     <?php if (!empty($event['logo'])): ?>
-                        <img src="<?php echo $event['logo'] ?>" />
+                    <img width="90px" height="90" src="<?php ViewHelper::url("upload/".$event['logo']); ?>" />
                     <?php else: ?>
                         <img src="http://placehold.it/90x90" />
                     <?php endif; ?>

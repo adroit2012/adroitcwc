@@ -23,12 +23,12 @@ $categories = App::getRepository('Category')->getAllCategories();
 
                     <div class="span2">
                         <?php if (!empty($event['logo'])): ?>
-                            <img src="<?php echo $event['logo'] ?>" />
+                            <img width="90px" height="90" src="<?php ViewHelper::url("upload/".$event['logo']); ?>" />
                         <?php else: ?>
                             <img src="http://placehold.it/90x90" />
                         <?php endif; ?>
                     </div>
-
+ 
                     <div class="span8">
                         <h3><a href="<?php ViewHelper::url('?page=event&id=' . $event['event_id']) ?>"><?php echo $event['title'] ?></a></h3>
                         <p class="align-justify"><?php echo $event['summary'] ?></p>
