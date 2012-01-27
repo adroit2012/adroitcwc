@@ -20,6 +20,14 @@ class EventRepository
 		return $this->db->many();
     }
 	
+	public function getUpcomingEvents($order = 'ASC')
+    {
+        $this->db->from('events');
+		$this->db->where(array('is_active = '=>1, 'start_date >='=>  date('Y-m-d')));
+		$order ? $this->db->orderBy('start_date', $order) : "";
+		return $this->db->many();
+    }
+	
 	public function getEvents($criteria)
     {
 		//if()
@@ -85,9 +93,9 @@ class EventRepository
 	{
 		$this->db->reset();
 		return $this->db->sql(
-			"SELECT *, MATCH(title, summary, location) AGAINST('$searchString')".' AS score '."
+			"SELECT *, MATCH(title, summary, location) AGAINST('$searchString' IN BOOLEAN MODE)".' AS score '."
 			FROM events WHERE 
-			MATCH(title, summary, location) AGAINST('$searchString') 
+			MATCH(title, summary, location) AGAINST('$searchString' IN BOOLEAN MODE) 
 			ORDER BY score DESC"
 		)->many();
 	}
