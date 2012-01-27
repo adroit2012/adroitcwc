@@ -55,25 +55,9 @@ $event_categories_text = "Category: " . implode(', ', $event_categories_text);
 
             </div>
             <script type="text/javascript">
-                $('a#i-am-attending').click(function(){
-                    $.ajax({
-                        beforeSend: function(){
-                            $('a#i-am-attending').html('Please wait ....');
-                        },
-                        complete: function(){
-                            $('a#i-am-attending').remove();
-                        },
-                        success: function(data){
-                            $('p#attendance-text').html(data);
-                        },
-                        data: {event_id : $('div.single-event').attr('id'), user_id : <?php echo $_SESSION['user']['user_id']?>},
-                        type: "post",
-                        url: "<?php ViewHelper::url('?page=attendance'); ?>"
-
-                    });
-                    return false;
-                });
+                attendance_url = '<?php ViewHelper::url('?page=attendance'); ?>';
             </script>
+            <script src="<?php echo ViewHelper::url("assets/js/i-am-attending.js") ?>" type="text/javascript"></script>
 
             <p class="align-justify"><?php echo nl2br($event['summary']) ?></p>
             <p><strong>Event Link:</strong> <br /><a target="_blank" href="<?php echo $event['href'] ?>"><?php echo $event['href'] ?></a></p>

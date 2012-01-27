@@ -71,6 +71,10 @@ $categories = App::getRepository('Category')->getAllCategories();
 				
 				?>
             </div>
+            <script type="text/javascript">
+                attendance_url = '<?php ViewHelper::url('?page=attendance'); ?>';
+            </script>
+            <script src="<?php echo ViewHelper::url("assets/js/i-am-attending.js") ?>" type="text/javascript"></script>
 
         </div>
 
