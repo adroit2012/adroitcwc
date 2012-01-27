@@ -21,7 +21,7 @@ $event_categories_text = "Category: " . implode(', ', $event_categories_text);
 
             <?php ViewHelper::flushMessage(); ?>
 
-            <div class="row single-event">
+            <div id="<?php echo $event['event_id']; ?>" class="row single-event">
 
                 <div class="span2" style="padding: 10px 0 10px 10px;">
                     <?php if (!empty($event['logo'])): ?>
@@ -37,11 +37,38 @@ $event_categories_text = "Category: " . implode(', ', $event_categories_text);
                         <?php echo ViewHelper::formatDate($event['start_date']) ?> - <?php echo ViewHelper::formatDate($event['end_date']) ?> <br />
                         <?php echo $event_categories_text; ?><br />
                         <?php echo $event['location'] ?><br />
-                        <a href="#" class="btn small">I'm attending</a> &nbsp; <strong><?php echo $event['total_attending'] ?> people</strong> attending so far!
+                        <p id="attendance-text">
+                            <?php if(isset ($_SESSION['user']) && !App::getRepository('Event')->isAttendee($event['event_id'], $_SESSION['user']['user_id'])){?>
+                                <strong><?php echo $event['total_attending'] ?> people</strong> attending so far!
+                                <a id="i-am-attending" href="#" class="btn small">I'm attending</a> &nbsp;
+                            <?php }else{?>
+                                <strong>You</strong> and <strong><?php echo ($event['total_attending'] - 1) ?> other people</strong> attending so far!
+                            <?php }?>
+                        </p>
                     </div>
                 </div>
 
             </div>
+            <script type="text/javascript">
+                $('a#i-am-attending').click(function(){
+                    $.ajax({
+                        beforeSend: function(){
+                            $('a#i-am-attending').html('Please wait ....');
+                        },
+                        complete: function(){
+                            $('a#i-am-attending').remove();
+                        },
+                        success: function(data){
+                            $('p#attendance-text').html(data);
+                        },
+                        data: {event_id : $('div.single-event').attr('id'), user_id : <?php echo $_SESSION['user']['user_id']?>},
+                        type: "post",
+                        url: "<?php ViewHelper::url('?page=attendance'); ?>"
+
+                    });
+                    return false;
+                });
+            </script>
 
             <p class="align-justify"><?php echo nl2br($event['summary']) ?></p>
             <p><strong>Event Link:</strong> <br /><a target="_blank" href="<?php echo $event['href'] ?>"><?php echo $event['href'] ?></a></p>

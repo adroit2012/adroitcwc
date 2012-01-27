@@ -2,7 +2,7 @@
 
 include_once 'header.php';
 
-if (!empty($_POST)) {
+if (!empty($_POST) && isset ($_SESSION['user'])) {
 
     $eventId = App::getRepository('Event')->create($_POST);
 
