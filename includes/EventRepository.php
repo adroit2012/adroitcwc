@@ -85,9 +85,9 @@ class EventRepository
 	{
 		$this->db->reset();
 		return $this->db->sql(
-			"SELECT *, MATCH(title, summary, location) AGAINST('$searchString')".' AS score '."
+			"SELECT *, MATCH(title, summary, location) AGAINST('$searchString' IN BOOLEAN MODE)".' AS score '."
 			FROM events WHERE 
-			MATCH(title, summary, location) AGAINST('$searchString') 
+			MATCH(title, summary, location) AGAINST('$searchString' IN BOOLEAN MODE) 
 			ORDER BY score DESC"
 		)->many();
 	}
