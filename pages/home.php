@@ -2,7 +2,7 @@
 
 include_once 'header.php';
 
-$activeEvents = App::getRepository('Event')->getActiveEvents();
+$activeEvents = App::getRepository('Event')->getUpcomingEvents();
 $categories = App::getRepository('Category')->getAllCategories();
 
 ?>
