@@ -40,7 +40,9 @@ $categories = App::getRepository('Category')->getAllCategories();
                         <p>
                             <a href="<?php ViewHelper::url('?page=event&id=' . $event['event_id'] . '#comments') ?>"><?php echo $event['total_comments'] ?> comments</a> &nbsp;
                             <strong><?php echo $event['total_attending'] ?> attending</strong> &nbsp;
-                            <a href="#" class="btn small">I'm attending</a>
+                            <?php if(isset ($_SESSION['user'])){?>
+                                <a href="#" class="btn small">I'm attending</a> &nbsp;
+                            <?php }?>
                         </p>
                     </div>
 

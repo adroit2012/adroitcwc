@@ -37,7 +37,10 @@ $event_categories_text = "Category: " . implode(', ', $event_categories_text);
                         <?php echo ViewHelper::formatDate($event['start_date']) ?> - <?php echo ViewHelper::formatDate($event['end_date']) ?> <br />
                         <?php echo $event_categories_text; ?><br />
                         <?php echo $event['location'] ?><br />
-                        <a href="#" class="btn small">I'm attending</a> &nbsp; <strong><?php echo $event['total_attending'] ?> people</strong> attending so far!
+                        <?php if(isset ($_SESSION['user'])){?>
+                        <a href="#" class="btn small">I'm attending</a> &nbsp;
+                        <?php }?>
+                        <strong><?php echo $event['total_attending'] ?> people</strong> attending so far!
                     </div>
                 </div>
 
