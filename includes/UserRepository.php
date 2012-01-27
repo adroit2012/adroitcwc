@@ -34,4 +34,9 @@ class UserRepository
                     ->execute();
     }
 
+    public function getGravatar($email, $size = 32, $class='thumbnail'){
+        $email_hash = md5( strtolower( trim( $email) ) );
+        return "<img class='$class' src='http://www.gravatar.com/avatar/$email_hash?s=$size' />";
+    }
+
 }

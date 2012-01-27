@@ -21,6 +21,7 @@
     <script src="<?php echo ViewHelper::url("assets/js/jquery.validate.min.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/jquery-ui/jquery-ui.min.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/js/jquery.tokeninput.js") ?>" type="text/javascript"></script>
+    <script src="<?php echo ViewHelper::url("assets/js/bootstrap-twipsy.js") ?>" type="text/javascript"></script>
 </head>
 
 <body>
