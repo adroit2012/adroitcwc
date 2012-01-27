@@ -44,7 +44,7 @@
 			  </form>
             <span class="pull-right">
                 <?php if ($_SESSION['user']): ?>
-                    <span><?php echo $_SESSION['user']['email'] ?></span> | <a href="<?php ViewHelper::url('?page=logout') ?>">Logout</a>
+                    <span><a href="<?php ViewHelper::url('?page=logout') ?>"><?php if($_SESSION['user']['name']=='') echo $_SESSION['user']['email']; else echo $_SESSION['user']['name']; ?></a></span> | <a href="<?php ViewHelper::url('?page=logout') ?>">Logout</a>
                 <?php else: ?>
                     <div class="sign-in-with">Sign in with :</div>
                     <a href="<?php ViewHelper::url('?page=login&type=google') ?>">
