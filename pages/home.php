@@ -24,7 +24,7 @@ $categories = App::getRepository('Category')->getAllCategories();
 
                 <?php foreach ($activeEvents as $event): ?>
 
-                <div class="row event">
+                <div id="<?php echo $event['event_id'] ?>" class="row event">
 
                     <div class="span2">
                         <?php if (!empty($event['logo'])): ?>
@@ -39,10 +39,14 @@ $categories = App::getRepository('Category')->getAllCategories();
                         <p class="align-justify"><?php echo $event['summary'] ?></p>
                         <p>
                             <a href="<?php ViewHelper::url('?page=event&id=' . $event['event_id'] . '#comments') ?>"><?php echo $event['total_comments'] ?> comments</a> &nbsp;
-                            <strong><?php echo $event['total_attending'] ?> attending</strong> &nbsp;
-                            <?php if(isset ($_SESSION['user'])){?>
-                                <a href="#" class="btn small">I'm attending</a> &nbsp;
-                            <?php }?>
+                            <span id="attendance-text">
+                                <?php if(isset ($_SESSION['user']) && !App::getRepository('Event')->isAttendee($event['event_id'], $_SESSION['user']['user_id'])){?>
+                                    <strong><?php echo $event['total_attending'] ?> people</strong> attending so far!
+                                    <a id="i-am-attending" href="#" class="btn small">I'm attending</a> &nbsp;
+                                <?php }else{?>
+                                    <strong>You</strong> and <strong><?php echo ($event['total_attending'] - 1) ?> other people</strong> attending so far!
+                                <?php }?>
+                            </span>
                         </p>
                     </div>
 
