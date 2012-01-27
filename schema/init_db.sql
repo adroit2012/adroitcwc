@@ -110,6 +110,8 @@ CREATE TABLE IF NOT EXISTS `talks` (
   `speaker` varchar(50) NOT NULL DEFAULT '',
   `slide_link` varchar(200) DEFAULT NULL,
   `total_comments` int(11) DEFAULT '0',
+  `rating` double NOT NULL DEFAULT '0',
+  `rate_count` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`talk_id`),
   FULLTEXT KEY `search` (`title`,`summary`,`speaker`),
   FULLTEXT KEY `speaker` (`speaker`)
