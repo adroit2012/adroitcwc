@@ -30,10 +30,14 @@ class EventRepository
 
     public function getActiveEventsByCategory($categoryId)
     {
-        return $this->db->from('events')
-                    ->where('is_active = ', 1)
-                    ->where('category_id = ', $categoryId)
-                    ->many();
+        return $this->db
+				->from('events')
+				->join('categories_events', array(
+					'categories_events.event_id' => 'events.event_id',
+					'category_id' => $categoryId,
+					))
+				->where('is_active = ', 1)
+				->many();
     }
 
     public function getEventById($eventId)
