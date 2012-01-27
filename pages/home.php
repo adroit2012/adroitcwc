@@ -40,11 +40,15 @@ $categories = App::getRepository('Category')->getAllCategories();
                         <p>
                             <a href="<?php ViewHelper::url('?page=event&id=' . $event['event_id'] . '#comments') ?>"><?php echo $event['total_comments'] ?> comments</a> &nbsp;
                             <span id="attendance-text">
-                                <?php if(isset ($_SESSION['user']) && !App::getRepository('Event')->isAttendee($event['event_id'], $_SESSION['user']['user_id'])){?>
-                                    <strong><?php echo $event['total_attending'] ?> people</strong> attending so far!
-                                    <a id="i-am-attending" href="#" class="btn small">I'm attending</a> &nbsp;
+                                <?php if(isset ($_SESSION['user'])){?>
+                                    <?php if(App::getRepository('Event')->isAttendee($event['event_id'], $_SESSION['user']['user_id'])){?>
+                                        <strong>You</strong> and <strong><?php echo (int)$event['total_attending'] > 0 ? ($event['total_attending'] - 1) : $event['total_attending']; ?> other people</strong> attending so far!
+                                    <?php }else{?>
+                                        <strong><?php echo $event['total_attending'] ?> people</strong> attending so far! &nbsp;
+                                        <a id="i-am-attending" href="#" class="btn small">I'm attending</a>
+                                    <?php }?>
                                 <?php }else{?>
-                                    <strong>You</strong> and <strong><?php echo ($event['total_attending'] - 1) ?> other people</strong> attending so far!
+                                    <strong><?php echo $event['total_attending'] ?> people</strong> attending so far! &nbsp;
                                 <?php }?>
                             </span>
                         </p>
@@ -55,7 +59,10 @@ $categories = App::getRepository('Category')->getAllCategories();
                 <?php endforeach; ?>
 
             </div>
-
+            <script type="text/javascript">
+                attendance_url = '<?php ViewHelper::url('?page=attendance'); ?>';
+            </script>
+            <script src="<?php echo ViewHelper::url("assets/js/i-am-attending.js") ?>" type="text/javascript"></script>
         </div>
 
         <?php include_once 'right-sidebar.php'; ?>
