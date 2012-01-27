@@ -23,6 +23,7 @@
     <script src="<?php echo ViewHelper::url("assets/js/jquery.tokeninput.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/js/bootstrap-alert.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/js/bootstrap-twipsy.js") ?>" type="text/javascript"></script>
+    <script src="<?php echo ViewHelper::url("assets/js/jquery.rater.js") ?>" type="text/javascript"></script>
 </head>
 
 <body>

@@ -20,10 +20,22 @@ $categories = App::getRepository('Category')->getAllCategories();
             <div class="meta">
                 by <strong><?php echo $talk['speaker'] ?></strong> <br />
                 Talk at <a href="<?php ViewHelper::url('?page=event&id=' . $event['event_id']) ?>"><?php echo $event['title'] ?></a>
+                <div id="<?php echo $talk['talk_id'] ?>" class="stat">
+                    <?php $talk['rating_stars_on'] = round((90 * $talk['rating']) / 5, 1); ?>
+                    <div class="statVal">
+                        <span class="ui-rater">
+                            <span class="ui-rater-starsOff" style="width:90px;"><span class="ui-rater-starsOn" style="width:<?php echo $talk['rating_stars_on'];?>px"></span></span>
+                            <span class="ui-rater-rating"><?php echo $talk['rating']; ?></span>&#160;(<span class="ui-rater-rateCount"><?php echo $talk['rate_count']; ?></span>)
+                        </span>
+                    </div>
+                </div>
             </div>
-
             <p class="align-justify"><?php echo nl2br($talk['summary']) ?></p>
-
+            <script type="text/javascript">
+                $(function() {
+                    $('#<?php echo $talk['talk_id'] ?>').rater({ postHref: '<?php ViewHelper::url('?page=rate-talk') ?>' });
+                });
+            </script>
             <h3>Comments</h3>
 
             <div class="comments">
