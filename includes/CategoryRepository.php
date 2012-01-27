@@ -25,7 +25,7 @@ class CategoryRepository
                     ->one();
     }
 	
-	public function getCategoriesInEvents($eventID)
+	public function getCategoriesInEvent($eventID)
 	{
 		return $this->db
 				->from('categories')

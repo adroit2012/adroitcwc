@@ -6,7 +6,7 @@ $event = App::getRepository('Event')->getEventById($_GET['id']);
 $talks = App::getRepository('Talk')->getTalksByEvent($_GET['id']);
 $categories = App::getRepository('Category')->getAllCategories();
 
-$event_categories = App::getRepository('Category')->getCategoriesInEvents($_GET['id']);
+$event_categories = App::getRepository('Category')->getCategoriesInEvent($_GET['id']);
 $event_categories_text = array();
 foreach ($event_categories as $event_category) {
     $event_categories_text[] = "<a href='".ViewHelper::url('?page=cat&id=' . $event_category['category_id'], true)."'>".$event_category['title']."</a>";
