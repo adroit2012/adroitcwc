@@ -21,5 +21,23 @@
 
 
 	</div>
+    <?php if(!empty($who_is_attending)): ?>
+    <div class="widget">
+
+		<h4>Who's attending</h4>
+        <ul class="media-grid">
+            <?php foreach ($who_is_attending as $attendee):?>
+                <li>
+                  <a data-placement="below" rel='twipsy' title='<?php echo $attendee['name'] ? $attendee['name'] : $attendee['email'] ?>' href="#">
+                    <?php echo App::getRepository('User')->getGravatar($attendee['email'], 30) ;?>
+                  </a>
+                </li>
+            <?php endforeach;?>
+         </ul>
+        <script type="text/javascript">
+            $('ul.media-grid li a').twipsy();
+        </script>
+	</div>
+    <?php endif; ?>
 
 </div>
