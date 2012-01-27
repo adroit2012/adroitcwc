@@ -67,7 +67,7 @@ $event_categories_text = "Category: " . implode(', ', $event_categories_text);
                 <?php foreach ($talks as $talk): ?>
                 <li><a href="<?php ViewHelper::url('?page=talk&id=' . $talk['talk_id']) ?>"><?php echo $talk['title'] ?></a></li>
                 <?php endforeach; ?>
-
+				<h5><a href="<?php ViewHelper::url('?page=add-talk&id=' . $event['event_id']) ?>">Add new talk</a></h5>
             </ul>
 			<h3>Comments</h3>
 			

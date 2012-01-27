@@ -53,4 +53,13 @@ class TalkRepository
         return $talk;
         
     }
+	
+	public function create($data)
+    {
+        $this->db->from('talks')
+             ->insert($data)
+             ->execute();
+		
+		return $this->db->insert_id;
+	}
 }
