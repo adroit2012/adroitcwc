@@ -80,4 +80,37 @@ class EventRepository
         }
         return $inserted_event_id;
     }
+
+    public function addAttendee($event_id, $user_id){
+        $this->db->from('attendees')
+             ->insert(array('event_id'=> $event_id, 'user_id' => $user_id ))
+             ->execute();
+        $total_attending = $this->getTotalAttending($event_id);
+        $total_attending += 1;
+        $this->setTotalAttending($event_id, $total_attending);
+        return $total_attending;
+        
+    }
+
+    public function getTotalAttending($event_id){
+        $event = $this->db->from('events')
+             ->select('total_attending')
+             ->where('event_id = ', $event_id)
+             ->one();
+        return (int)$event['total_attending'];
+    }
+
+    public function setTotalAttending($event_id, $total_attending){
+        $this->db->from('events')
+             ->where(array('event_id' => $event_id))
+             ->update(array('total_attending' => $total_attending))
+             ->execute();
+    }
+
+    public function isAttendee($event_id, $user_id){
+        $attendee = $this->db->from('attendees')
+                    ->where(array('event_id' => $event_id, 'user_id' => $user_id))
+                    ->one();
+        return empty($attendee) ? false : true;
+    }
 }
