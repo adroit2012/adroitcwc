@@ -25,7 +25,8 @@ foreach ($categories as $category) {
     <div class="row">
 
         <div id="main-content" class="span10">
-
+            <?php ViewHelper::flushMessage(); ?>
+            
             <h2>Submit an event!</h2>
 
             <p class="align-justify">Submit your event here to be included on Tech Adda. The site is aimed at events with sessions, where organisers are looking to use this as a tool to gather feedback.</p>

@@ -13,7 +13,8 @@ $categories = App::getRepository('Category')->getAllCategories();
     <div class="row">
 
         <div id="main-content" class="span10">
-
+            <?php ViewHelper::flushMessage(); ?>
+            
             <h4>Events on <?php echo $category['title'] ?></h4>
 
 			<?php if(isset($activeEvents) && !empty ($activeEvents)) { ?>

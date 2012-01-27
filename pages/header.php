@@ -21,6 +21,7 @@
     <script src="<?php echo ViewHelper::url("assets/js/jquery.validate.min.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/jquery-ui/jquery-ui.min.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/js/jquery.tokeninput.js") ?>" type="text/javascript"></script>
+    <script src="<?php echo ViewHelper::url("assets/js/bootstrap-alert.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/js/bootstrap-twipsy.js") ?>" type="text/javascript"></script>
 </head>
 
@@ -45,7 +46,7 @@
 			  </form>
             <span class="pull-right">
                 <?php if ($_SESSION['user']): ?>
-                    <span><a href="<?php ViewHelper::url('?page=logout') ?>"><?php if($_SESSION['user']['name']=='') echo $_SESSION['user']['email']; else echo $_SESSION['user']['name']; ?></a></span> | <a href="<?php ViewHelper::url('?page=logout') ?>">Logout</a>
+                    <span><a href="<?php ViewHelper::url('?page=update-profile') ?>"><?php echo $_SESSION['user']['name'] ? $_SESSION['user']['name'] : $_SESSION['user']['eamil']; ?></a></span> | <a href="<?php ViewHelper::url('?page=logout') ?>">Logout</a>
                 <?php else: ?>
                     <div class="sign-in-with">Sign in with :</div>
                     <a href="<?php ViewHelper::url('?page=login&type=google') ?>">
