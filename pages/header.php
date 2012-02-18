@@ -24,6 +24,7 @@
     <script src="<?php echo ViewHelper::url("assets/js/bootstrap-alert.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/js/bootstrap-twipsy.js") ?>" type="text/javascript"></script>
     <script src="<?php echo ViewHelper::url("assets/js/jquery.rater.js") ?>" type="text/javascript"></script>
+    <script src="<?php echo ViewHelper::url("assets/js/jquery.highlight-3.js") ?>" type="text/javascript"></script>
 </head>
 
 <body>
@@ -43,11 +44,11 @@
             </ul>
 
 			<form method="post" action="<?php ViewHelper::url('?page=search') ?>" class="pull-left">
-				<input type="text" placeholder="Search" name="search">
+				<input type="text" placeholder="Search" value="<?php echo $_REQUEST['search']; ?>" name="search">
 			  </form>
             <span class="pull-right">
                 <?php if ($_SESSION['user']): ?>
-                    <span><a href="<?php ViewHelper::url('?page=update-profile') ?>"><?php echo $_SESSION['user']['name'] ? $_SESSION['user']['name'] : $_SESSION['user']['eamil']; ?></a></span> | <a href="<?php ViewHelper::url('?page=logout') ?>">Logout</a>
+                    <span><a href="<?php ViewHelper::url('?page=update-profile') ?>"><?php echo $_SESSION['user']['name'] ? $_SESSION['user']['name'] : $_SESSION['user']['email']; ?></a></span> | <a href="<?php ViewHelper::url('?page=logout') ?>">Logout</a>
                 <?php else: ?>
                     <div class="sign-in-with">Sign in with :</div>
                     <a href="<?php ViewHelper::url('?page=login&type=google') ?>">

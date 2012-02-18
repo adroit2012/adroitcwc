@@ -54,7 +54,7 @@ try {
         }
 
 		//return to previous url
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        header('Location: ' . ViewHelper::url('', true));
 
     }
 

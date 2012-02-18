@@ -73,7 +73,14 @@ $categories = App::getRepository('Category')->getAllCategories();
 			</div>
 
         </div>
-
+        <?php if(isset ($_REQUEST['search'])):?>
+        <?php $searches =  explode(' ', $_REQUEST['search'])?>
+        <script type="text/javascript">
+            <?php foreach ($searches as $search):?>
+                $('.events').highlight('<?php echo $search; ?>');
+            <?php endforeach;?>
+        </script>
+        <?php endif;?>
         <?php include_once 'right-sidebar.php'; ?>
 
     </div>

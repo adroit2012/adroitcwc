@@ -63,11 +63,17 @@ $event_categories_text = "Category: " . implode(', ', $event_categories_text);
             <p><strong>Event Link:</strong> <br /><a target="_blank" href="<?php echo $event['href'] ?>"><?php echo $event['href'] ?></a></p>
 
             <h3>Talks</h3>
+            <?php if(isset ($_SESSION['user'])): ?>
+                <h5><a href="<?php ViewHelper::url('?page=add-talk&id=' . $event['event_id']) ?>">Add new talk</a></h5>
+            <?php else: ?>
+                <div class="post-comment">
+                     Please sign in with <a href="<?php ViewHelper::url('?page=login&type=yahoo') ?>">Yahoo</a> or <a href="<?php ViewHelper::url('?page=login&type=google') ?>">Google</a> to add a talk.
+                </div>
+            <?php endif; ?>
             <ul>
                 <?php foreach ($talks as $talk): ?>
                 <li><a href="<?php ViewHelper::url('?page=talk&id=' . $talk['talk_id']) ?>"><?php echo $talk['title'] ?></a></li>
                 <?php endforeach; ?>
-				<h5><a href="<?php ViewHelper::url('?page=add-talk&id=' . $event['event_id']) ?>">Add new talk</a></h5>
             </ul>
 			<h3>Comments</h3>
 			

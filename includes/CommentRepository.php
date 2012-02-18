@@ -31,7 +31,7 @@ class CommentRepository
 	public function create($data)
     {
         $data['user_id'] = $_SESSION['user']['user_id'];
-
+        $data['body'] = htmlspecialchars($data['body']);
         return $this->db->from('comments')
                     ->insert($data)
                     ->execute();
